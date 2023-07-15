@@ -35,7 +35,7 @@ struct CardView: View {
                 Text(chemical_name)
                     .font(.subheadline)
                     .italic()
-
+                
             }
             Text(dosage)
                 .font(.caption2)
@@ -73,38 +73,39 @@ extension VerticalAlignment {
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            
             VStack {
-
-                CardView(name: "Lantus Solostar", dosage: "10 units subcutaneously nightly", chemical_name: "Insulin Glargine", last_dose: Date() )
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-
-                CardView(name: "TruRapi", dosage: "3-5 units subcutaneously with meals", chemical_name: "Insulin Aspart" )
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 8)
-                
-                
-                Button(action: {
-                }, label: {
-                    HStack {
-                        Image(systemName: "plus.circle.fill")
-                        
-                        Text("Add New Therapy")
-                            .bold()
+                Text("Welcome Back!")
+                    .font(.title3)
+                    .bold()
+                VStack {
+                    
+                    
+                    CardView(name: "Lantus Solostar", dosage: "10 units subcutaneously nightly", chemical_name: "Insulin Glargine", last_dose: Date() )
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                    
+                    CardView(name: "TruRapi", dosage: "3-5 units subcutaneously with meals", chemical_name: "Insulin Aspart" )
+                        .padding(.horizontal, 16)
+                        .padding(.vertical, 8)
+                    
+                    NavigationLink(destination: AddDrugView()) {
+                        HStack {
+                            Image(systemName: "plus.circle.fill")
+                            
+                            Text("Add New Therapy")
+                                .bold()
+                        }
+                        .frame(width: 250, height:50)
+                        .foregroundColor(Color.white)
+                        .background(Color.blue)
+                        .cornerRadius(8)
+                        .padding()
                     }
-                    .frame(width: 250, height:50)
-                    .foregroundColor(Color.white)
-                    .background(Color.blue)
-                    .cornerRadius(8)
-                    .padding()
-                })
+                }
+                
             }
         }
-//        .navigationTitle("Welcome Back!") // TODO: Not working :(
-
-//        ARViewContainer()
-//            .edgesIgnoringSafeArea(.all)
+        
     }
 }
 
