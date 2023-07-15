@@ -11,6 +11,11 @@
 		D749C0272A620E0B0089A4BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0262A620E0B0089A4BF /* ContentView.swift */; };
 		D749C0292A620E0D0089A4BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D749C0282A620E0D0089A4BF /* Assets.xcassets */; };
 		D749C02C2A620E0D0089A4BF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D749C02B2A620E0D0089A4BF /* Preview Assets.xcassets */; };
+		D749C0332A6226560089A4BF /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0322A6226560089A4BF /* ARViewContainer.swift */; };
+		D749C0352A622A0B0089A4BF /* SkeletonJoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0342A622A0B0089A4BF /* SkeletonJoint.swift */; };
+		D749C0372A622A400089A4BF /* SkeletonBone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0362A622A400089A4BF /* SkeletonBone.swift */; };
+		D749C0392A622AAF0089A4BF /* Bones.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0382A622AAF0089A4BF /* Bones.swift */; };
+		D749C03B2A622D1A0089A4BF /* BodySkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C03A2A622D1A0089A4BF /* BodySkeleton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +24,11 @@
 		D749C0262A620E0B0089A4BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D749C0282A620E0D0089A4BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D749C02B2A620E0D0089A4BF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D749C0322A6226560089A4BF /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		D749C0342A622A0B0089A4BF /* SkeletonJoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonJoint.swift; sourceTree = "<group>"; };
+		D749C0362A622A400089A4BF /* SkeletonBone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonBone.swift; sourceTree = "<group>"; };
+		D749C0382A622AAF0089A4BF /* Bones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bones.swift; sourceTree = "<group>"; };
+		D749C03A2A622D1A0089A4BF /* BodySkeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodySkeleton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +61,15 @@
 		D749C0232A620E0B0089A4BF /* aeview */ = {
 			isa = PBXGroup;
 			children = (
+				D749C0362A622A400089A4BF /* SkeletonBone.swift */,
 				D749C0242A620E0B0089A4BF /* aeviewApp.swift */,
 				D749C0262A620E0B0089A4BF /* ContentView.swift */,
+				D749C0322A6226560089A4BF /* ARViewContainer.swift */,
+				D749C0342A622A0B0089A4BF /* SkeletonJoint.swift */,
 				D749C0282A620E0D0089A4BF /* Assets.xcassets */,
 				D749C02A2A620E0D0089A4BF /* Preview Content */,
+				D749C0382A622AAF0089A4BF /* Bones.swift */,
+				D749C03A2A622D1A0089A4BF /* BodySkeleton.swift */,
 			);
 			path = aeview;
 			sourceTree = "<group>";
@@ -137,8 +152,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D749C03B2A622D1A0089A4BF /* BodySkeleton.swift in Sources */,
 				D749C0272A620E0B0089A4BF /* ContentView.swift in Sources */,
+				D749C0392A622AAF0089A4BF /* Bones.swift in Sources */,
+				D749C0372A622A400089A4BF /* SkeletonBone.swift in Sources */,
 				D749C0252A620E0B0089A4BF /* aeviewApp.swift in Sources */,
+				D749C0332A6226560089A4BF /* ARViewContainer.swift in Sources */,
+				D749C0352A622A0B0089A4BF /* SkeletonJoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,8 +287,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"aeview/Preview Content\"";
+				DEVELOPMENT_TEAM = LKLHZWRD5Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "AeView needs access to the camera in order to access augmented reality features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -295,8 +317,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"aeview/Preview Content\"";
+				DEVELOPMENT_TEAM = LKLHZWRD5Y;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "AeView needs access to the camera in order to access augmented reality features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
