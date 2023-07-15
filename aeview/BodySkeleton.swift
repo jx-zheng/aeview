@@ -10,11 +10,16 @@ import RealityKit
 import ARKit
 
 class BodySkeleton: Entity {
+    var bodyAnchor: ARBodyAnchor? = nil
+    var bodyCollisionPlane: Entity? = nil
     var joints: [String: Entity] = [:]
     var bones: [String: Entity] = [:]
+    var injectionNodes: [(Entity, simd_float3)] = [] // The 3D position of a node relative to body anchor
     
     required init(for bodyAnchor: ARBodyAnchor) {
         super.init()
+        
+        self.bodyAnchor = bodyAnchor
         
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
             var jointRadius: Float = 0.05
@@ -59,6 +64,9 @@ class BodySkeleton: Entity {
             bones[bone.name] = boneEntity
             self.addChild(boneEntity)
         }
+        
+        self.addChild(CollisionPlaneEntity.getCollisionPlane())
+        self.bodyCollisionPlane = CollisionPlaneEntity.getCollisionPlane()
     }
     
     required init() {
@@ -66,6 +74,7 @@ class BodySkeleton: Entity {
     }
     
     func update(with bodyAnchor: ARBodyAnchor) {
+        let rootTransform = bodyAnchor.transform
         let rootPosition = simd_make_float3(bodyAnchor.transform.columns.3)
         
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
@@ -86,11 +95,37 @@ class BodySkeleton: Entity {
             entity.position = skeletonBone.centerPosition
             entity.look(at: skeletonBone.toJoint.position, from: skeletonBone.centerPosition, relativeTo: nil)
         }
+        
+        for injectionNode in injectionNodes {
+            let nodeRelativePosition = injectionNode.1;
+            let node = injectionNode.0;
+            node.position = nodeRelativePosition + rootPosition
+        }
+        
+        if let plane = self.bodyCollisionPlane {
+            guard let hipJointTransform = bodyAnchor.skeleton.modelTransform(for: .root) else { return }
+            let rotationMatrix = simd_float4x4(SCNMatrix4MakeRotation(.pi / 2, 1, 0, 0))
+            let combinedTransform = rootTransform * hipJointTransform * rotationMatrix
+            plane.transform.matrix = combinedTransform
+        }
+    }
+    
+    func addInjectionNode(at hitResult: simd_float3, to arView: ARView) { // TODO: is arView needed here?
+        let node = ARInjectionNode.createNode()
+        // node.position = hitResult
+        
+        let anchorTransform = bodyAnchor?.transform
+        let anchorPosition = SIMD3<Float>(anchorTransform!.columns.3.x, anchorTransform!.columns.3.y, anchorTransform!.columns.3.z)
+        let nodeLocalPosition = hitResult - anchorPosition
+        injectionNodes.append((node, nodeLocalPosition))
+        
+        self.addChild(node)
     }
     
     private func createJoint(radius: Float, color: UIColor = .white) -> Entity {
         let mesh = MeshResource.generateSphere(radius: radius)
-        let material = SimpleMaterial(color: color, roughness: 0.8, isMetallic: false)
+        var material = SimpleMaterial()
+        material.color = .init(tint: .blue.withAlphaComponent(0.3))
         let entity = ModelEntity(mesh: mesh, materials: [material])
         
         return entity
@@ -117,7 +152,8 @@ class BodySkeleton: Entity {
     
     private func createBoneEntity(for skeletonBone: SkeletonBone, diameter: Float = 0.04, color: UIColor = .white) -> Entity {
         let mesh = MeshResource.generateBox(size: [diameter, diameter, skeletonBone.length], cornerRadius: diameter / 2)
-        let material = SimpleMaterial(color: color, roughness: 0.5, isMetallic : true)
+        var material = SimpleMaterial()
+        material.color = .init(tint: .white.withAlphaComponent(0.35))
         let entity = ModelEntity(mesh: mesh, materials: [material])
         
         return entity

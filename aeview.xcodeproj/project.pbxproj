@@ -17,6 +17,8 @@
 		D749C0372A622A400089A4BF /* SkeletonBone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0362A622A400089A4BF /* SkeletonBone.swift */; };
 		D749C0392A622AAF0089A4BF /* Bones.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0382A622AAF0089A4BF /* Bones.swift */; };
 		D749C03B2A622D1A0089A4BF /* BodySkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C03A2A622D1A0089A4BF /* BodySkeleton.swift */; };
+		D7D8B7442A6335CA00908339 /* CollisionPlaneEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B7432A6335CA00908339 /* CollisionPlaneEntity.swift */; };
+		D7E3EDDA2A62FB76002F9BF5 /* ARInjectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E3EDD92A62FB76002F9BF5 /* ARInjectionNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		D749C0362A622A400089A4BF /* SkeletonBone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonBone.swift; sourceTree = "<group>"; };
 		D749C0382A622AAF0089A4BF /* Bones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bones.swift; sourceTree = "<group>"; };
 		D749C03A2A622D1A0089A4BF /* BodySkeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodySkeleton.swift; sourceTree = "<group>"; };
+		D7D8B7432A6335CA00908339 /* CollisionPlaneEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionPlaneEntity.swift; sourceTree = "<group>"; };
+		D7E3EDD92A62FB76002F9BF5 /* ARInjectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARInjectionNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 				D749C0382A622AAF0089A4BF /* Bones.swift */,
 				D749C03A2A622D1A0089A4BF /* BodySkeleton.swift */,
 				C9888A692A63311C001EAA33 /* AddDrugView.swift */,
+				D7E3EDD92A62FB76002F9BF5 /* ARInjectionNode.swift */,
+				D7D8B7432A6335CA00908339 /* CollisionPlaneEntity.swift */,
 			);
 			path = aeview;
 			sourceTree = "<group>";
@@ -160,7 +166,9 @@
 				C9888A6A2A63311C001EAA33 /* AddDrugView.swift in Sources */,
 				D749C0392A622AAF0089A4BF /* Bones.swift in Sources */,
 				D749C0372A622A400089A4BF /* SkeletonBone.swift in Sources */,
+				D7E3EDDA2A62FB76002F9BF5 /* ARInjectionNode.swift in Sources */,
 				D749C0252A620E0B0089A4BF /* aeviewApp.swift in Sources */,
+				D7D8B7442A6335CA00908339 /* CollisionPlaneEntity.swift in Sources */,
 				D749C0332A6226560089A4BF /* ARViewContainer.swift in Sources */,
 				D749C0352A622A0B0089A4BF /* SkeletonJoint.swift in Sources */,
 			);
