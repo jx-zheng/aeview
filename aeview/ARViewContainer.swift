@@ -13,6 +13,8 @@ private var bodySkeleton: BodySkeleton?
 private let bodySkeletonAnchor = AnchorEntity()
 
 struct ARViewContainer: UIViewRepresentable {
+    @State private var showFinishLandmarking = false
+    
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }

@@ -43,10 +43,8 @@ struct AddDrugView: View {
                             .frame(height: 100)
                     }
                     
-                    Button(action: {
-                        // Submit form action
-                        submitForm()
-                    }) {
+                    NavigationLink(destination: LandmarkingARView()
+                        .navigationBarHidden(true)) {
                         Text("Start Landmarking")
                             .font(.title3)
                             .bold()
