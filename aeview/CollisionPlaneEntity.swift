@@ -15,12 +15,9 @@ class CollisionPlaneEntity {
         if let plane = CollisionPlane {
             return plane
         } else {
-            let mesh = MeshResource.generatePlane(width: 0.5, depth: 1)
-            //let material = SimpleMaterial(color: .blue, isMetallic: false)
-            //let planeEntity = ModelEntity(mesh: mesh, materials: [material])
-            let transparentMaterial = SimpleMaterial(color: .clear, isMetallic: false)
-            let planeEntity = ModelEntity(mesh: mesh, materials: [transparentMaterial])
-            let boxShape = ShapeResource.generateBox(size: [0.5, 0.001, 1]) // Thin box approximating a plane
+            let mesh = MeshResource.generatePlane(width: 0.4, depth: 0.7)
+            let planeEntity = ModelEntity(mesh: mesh, materials: [UnlitMaterial(color: .clear)])
+            let boxShape = ShapeResource.generateBox(size: [0.4, 0.001, 0.7]) // Thin box approximating a plane
             planeEntity.collision = CollisionComponent(shapes: [boxShape])
             CollisionPlane = planeEntity
             return planeEntity

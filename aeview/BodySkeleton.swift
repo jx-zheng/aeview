@@ -65,19 +65,6 @@ class BodySkeleton: Entity {
             self.addChild(boneEntity)
         }
         
-        
-//        guard let hipJointTransform = bodyAnchor.skeleton.modelTransform(for: .root) else { return }
-//        let rotationMatrix = simd_float4x4(SCNMatrix4MakeRotation(.pi / 2, 1, 0, 0))
-//        let bodyTransform = bodyAnchor.transform
-//        let combinedTransform = bodyTransform * hipJointTransform * rotationMatrix
-//        let mesh = MeshResource.generatePlane(width: 0.5, depth: 1)
-//        let material = SimpleMaterial(color: .blue, isMetallic: false)
-//        let planeEntity = ModelEntity(mesh: mesh, materials: [material])
-//        planeEntity.transform.matrix = combinedTransform
-//
-//        let boxShape = ShapeResource.generateBox(size: [1, 0.001, 1]) // Thin box approximating a plane
-//        planeEntity.collision = CollisionComponent(shapes: [boxShape])
-//
         self.addChild(CollisionPlaneEntity.getCollisionPlane())
         self.bodyCollisionPlane = CollisionPlaneEntity.getCollisionPlane()
     }
@@ -131,23 +118,14 @@ class BodySkeleton: Entity {
         let anchorPosition = SIMD3<Float>(anchorTransform!.columns.3.x, anchorTransform!.columns.3.y, anchorTransform!.columns.3.z)
         let nodeLocalPosition = hitResult - anchorPosition
         injectionNodes.append((node, nodeLocalPosition))
-//
-//        let nodeWorldPosition = hitResult.columns.3
-//        node.position = simd_make_float3(nodeWorldPosition.x, nodeWorldPosition.y, nodeWorldPosition.z)
-//        let anchorTransform: simd_float4x4 = bodyAnchor!.transform
-//        print(anchorTransform)
-//        let anchorInverseTransform = simd_inverse(anchorTransform)
-//        let nodeLocalPosition4 = anchorInverseTransform * nodeWorldPosition
-//        let nodeLocalPosition = simd_make_float3(nodeLocalPosition4.x, nodeLocalPosition4.y, nodeLocalPosition4.z)
-//
-//        injectionNodes.append((node, nodeLocalPosition))
         
         self.addChild(node)
     }
     
     private func createJoint(radius: Float, color: UIColor = .white) -> Entity {
         let mesh = MeshResource.generateSphere(radius: radius)
-        let material = SimpleMaterial(color: color, roughness: 0.8, isMetallic: false)
+        var material = SimpleMaterial()
+        material.color = .init(tint: .blue.withAlphaComponent(0.3))
         let entity = ModelEntity(mesh: mesh, materials: [material])
         
         return entity
@@ -174,7 +152,8 @@ class BodySkeleton: Entity {
     
     private func createBoneEntity(for skeletonBone: SkeletonBone, diameter: Float = 0.04, color: UIColor = .white) -> Entity {
         let mesh = MeshResource.generateBox(size: [diameter, diameter, skeletonBone.length], cornerRadius: diameter / 2)
-        let material = SimpleMaterial(color: color, roughness: 0.5, isMetallic : true)
+        var material = SimpleMaterial()
+        material.color = .init(tint: .white.withAlphaComponent(0.35))
         let entity = ModelEntity(mesh: mesh, materials: [material])
         
         return entity
