@@ -9,13 +9,14 @@ import Foundation
 import SwiftUI
 
 struct LandmarkingARView: View {
+    @Binding var popToRootView : Bool
     
     var body: some View {
         ZStack() {
             ARViewContainer().ignoresSafeArea(.all)
             VStack {
                 Spacer()
-                Button(action: {}) {
+                Button(action: { self.popToRootView = false }) {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
                         Text("Finish Landmarking").bold()

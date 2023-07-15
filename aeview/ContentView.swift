@@ -71,6 +71,8 @@ extension VerticalAlignment {
 }
 
 struct ContentView: View {
+    @State var isActive: Bool = false
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -88,7 +90,8 @@ struct ContentView: View {
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                     
-                    NavigationLink(destination: AddDrugView()) {
+                    NavigationLink(destination: AddDrugView(rootIsActive: self.$isActive),
+                                   isActive: self.$isActive) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
                             
@@ -100,7 +103,7 @@ struct ContentView: View {
                         .background(Color.blue)
                         .cornerRadius(8)
                         .padding()
-                    }
+                    }.isDetailLink(false)
                 }
                 
             }

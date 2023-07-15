@@ -10,6 +10,8 @@ import Foundation
 import SwiftUI
 
 struct AddDrugView: View {
+    @Binding var rootIsActive : Bool
+    
     @State private var medicationName = ""
     @State private var chemicalName = ""
     @State private var selectedRoute = "Subcutaneous"
@@ -43,7 +45,7 @@ struct AddDrugView: View {
                             .frame(height: 100)
                     }
                     
-                    NavigationLink(destination: LandmarkingARView()
+                    NavigationLink(destination: LandmarkingARView(popToRootView: self.$rootIsActive)
                         .navigationBarHidden(true)) {
                         Text("Start Landmarking")
                             .font(.title3)
@@ -52,7 +54,7 @@ struct AddDrugView: View {
                             .padding()
                             .foregroundColor(.blue)
                             .cornerRadius(8)
-                    }
+                        }.isDetailLink(false)
                 }
                 .navigationBarTitle("Add Drug Form")
                 .padding()
@@ -73,8 +75,8 @@ struct AddDrugView: View {
     }
 }
 
-struct AddDrugView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddDrugView()
-    }
-}
+//struct AddDrugView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // AddDrugView()
+//    }
+//}
