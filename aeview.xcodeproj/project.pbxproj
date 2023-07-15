@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C9888A6A2A63311C001EAA33 /* AddDrugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888A692A63311C001EAA33 /* AddDrugView.swift */; };
 		D749C0252A620E0B0089A4BF /* aeviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0242A620E0B0089A4BF /* aeviewApp.swift */; };
 		D749C0272A620E0B0089A4BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0262A620E0B0089A4BF /* ContentView.swift */; };
 		D749C0292A620E0D0089A4BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D749C0282A620E0D0089A4BF /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C9888A692A63311C001EAA33 /* AddDrugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrugView.swift; sourceTree = "<group>"; };
 		D749C0212A620E0B0089A4BF /* aeview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aeview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D749C0242A620E0B0089A4BF /* aeviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeviewApp.swift; sourceTree = "<group>"; };
 		D749C0262A620E0B0089A4BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 				D749C02A2A620E0D0089A4BF /* Preview Content */,
 				D749C0382A622AAF0089A4BF /* Bones.swift */,
 				D749C03A2A622D1A0089A4BF /* BodySkeleton.swift */,
+				C9888A692A63311C001EAA33 /* AddDrugView.swift */,
 				D7E3EDD92A62FB76002F9BF5 /* ARInjectionNode.swift */,
 				D7D8B7432A6335CA00908339 /* CollisionPlaneEntity.swift */,
 			);
@@ -160,6 +163,7 @@
 			files = (
 				D749C03B2A622D1A0089A4BF /* BodySkeleton.swift in Sources */,
 				D749C0272A620E0B0089A4BF /* ContentView.swift in Sources */,
+				C9888A6A2A63311C001EAA33 /* AddDrugView.swift in Sources */,
 				D749C0392A622AAF0089A4BF /* Bones.swift in Sources */,
 				D749C0372A622A400089A4BF /* SkeletonBone.swift in Sources */,
 				D7E3EDDA2A62FB76002F9BF5 /* ARInjectionNode.swift in Sources */,
