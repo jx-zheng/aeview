@@ -72,6 +72,7 @@ extension VerticalAlignment {
 
 struct ContentView: View {
     @State var isActive: Bool = false
+    @State private var refreshFlag = false
     
     var body: some View {
         NavigationView {
@@ -80,8 +81,6 @@ struct ContentView: View {
                     .font(.title3)
                     .bold()
                 VStack {
-                    
-                    
                     CardView(name: "Lantus Solostar", dosage: "10 units subcutaneously nightly", chemical_name: "Insulin Glargine", last_dose: Date() )
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
@@ -90,7 +89,14 @@ struct ContentView: View {
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
                     
-                    NavigationLink(destination: AddDrugView(rootIsActive: self.$isActive),
+                    let name = PersistentData.medicationName
+                    if !name.isEmpty {
+                        CardView(name: name, dosage: "TODO", chemical_name: PersistentData.chemicalName)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                    }
+                    
+                    NavigationLink(destination: AddDrugView(rootIsActive: self.$isActive, refreshTherapyList: self.$refreshFlag),
                                    isActive: self.$isActive) {
                         HStack {
                             Image(systemName: "plus.circle.fill")

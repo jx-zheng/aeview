@@ -10,7 +10,8 @@ import Foundation
 import SwiftUI
 
 struct AddDrugView: View {
-    @Binding var rootIsActive : Bool
+    @Binding var rootIsActive: Bool
+    @Binding var refreshTherapyList: Bool
     
     @State private var medicationName = ""
     @State private var chemicalName = ""
@@ -46,6 +47,7 @@ struct AddDrugView: View {
                     }
                     
                     NavigationLink(destination: LandmarkingARView(popToRootView: self.$rootIsActive)
+                        .onAppear(perform: { self.persistTherapy() })
                         .navigationBarHidden(true)) {
                         Text("Start Landmarking")
                             .font(.title3)
@@ -65,13 +67,13 @@ struct AddDrugView: View {
 
     }
     
-    func submitForm() {
-        // Perform form submission or validation logic
-        print("Form submitted!")
-        print("Medication Name:", medicationName)
-        print("Chemical Name:", chemicalName)
-        print("Route of Administration:", selectedRoute)
-        print("Notes:", notes)
+    func persistTherapy() {
+        // Store the therapy in UserDefaults
+        PersistentData.medicationName = medicationName
+        PersistentData.chemicalName = chemicalName
+        PersistentData.routeOfAdministration = selectedRoute
+        PersistentData.therapyNotes = notes
+        self.refreshTherapyList.toggle()
     }
 }
 
