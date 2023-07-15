@@ -47,7 +47,7 @@ struct ARViewContainer: UIViewRepresentable {
             let arView = gestureRecognize.view as! ARView
             let location = gestureRecognize.location(in: arView)
 
-//            let results = arView.raycast(from: location, allowing: .estimatedPlane, alignment: .any)
+//            let results = arView.raycast(from: location, allowing: .existingPlaneInfinite, alignment: .any)
 //            print("got a tap")
 //            if let firstResult = results.first {
 //                print("processed a hit")
@@ -56,12 +56,24 @@ struct ARViewContainer: UIViewRepresentable {
 //                    skeleton.addInjectionNode(at: hitResult, to: arView)
 //                }
 //            }
-            let results = arView.hitTest(location, types: .featurePoint)
-            if let firstResult = results.first {
-                print("processed a hit")
-                let hitResult = firstResult.worldTransform
-                if let skeleton = bodySkeleton {
-                    skeleton.addInjectionNode(at: hitResult, to: arView)
+//            let results = arView.hitTest(location, types: .featurePoint)
+//            print(results.count)
+//            if let firstResult = results.first {
+//                print("processed a hit")
+//                let hitResult = firstResult.worldTransform
+//                if let skeleton = bodySkeleton {
+//                    skeleton.addInjectionNode(at: hitResult, to: arView)
+//                }
+//            }
+            let results = arView.hitTest(location)
+            //print(results.count)
+            for result in results {
+                if result.entity == CollisionPlaneEntity.getCollisionPlane() {
+                    //print("hit plane")
+                    if let skeleton = bodySkeleton {
+                        skeleton.addInjectionNode(at: result.position, to: arView)
+                    }
+                    break
                 }
             }
         }

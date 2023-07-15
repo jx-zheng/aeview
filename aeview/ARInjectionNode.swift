@@ -10,7 +10,7 @@ import RealityKit
 
 class ARInjectionNode {
     static func createNode() -> Entity {
-        let mesh = MeshResource.generateSphere(radius: 0.05)
+        let mesh = MeshResource.generateSphere(radius: 0.02)
         let material = SimpleMaterial(color: .red, roughness: 0.8, isMetallic: false)
         let entity = ModelEntity(mesh: mesh, materials: [material])
         return entity
