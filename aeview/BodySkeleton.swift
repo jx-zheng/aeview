@@ -10,11 +10,15 @@ import RealityKit
 import ARKit
 
 class BodySkeleton: Entity {
+    var bodyAnchor: ARBodyAnchor? = nil
     var joints: [String: Entity] = [:]
     var bones: [String: Entity] = [:]
+    var injectionNodes: [(Entity, simd_float3)] = [] // The 3D position of a node relative to body anchor
     
     required init(for bodyAnchor: ARBodyAnchor) {
         super.init()
+        
+        self.bodyAnchor = bodyAnchor
         
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
             var jointRadius: Float = 0.05
@@ -67,6 +71,9 @@ class BodySkeleton: Entity {
     
     func update(with bodyAnchor: ARBodyAnchor) {
         let rootPosition = simd_make_float3(bodyAnchor.transform.columns.3)
+        print(rootPosition)
+        
+        // print(injectionNodes)
         
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
             if let jointEntity = joints[jointName],
@@ -86,6 +93,26 @@ class BodySkeleton: Entity {
             entity.position = skeletonBone.centerPosition
             entity.look(at: skeletonBone.toJoint.position, from: skeletonBone.centerPosition, relativeTo: nil)
         }
+        
+        for injectionNode in injectionNodes {
+            let nodeRelativePosition = injectionNode.1;
+            let node = injectionNode.0;
+            node.position = nodeRelativePosition + rootPosition
+        }
+    }
+    
+    func addInjectionNode(at hitResult: simd_float4x4, to arView: ARView) { // TODO: is arView needed here?
+        let node = ARInjectionNode.createNode()
+        
+        let nodeWorldPosition = hitResult.columns.3
+        let anchorTransform: simd_float4x4 = bodyAnchor!.transform
+        let anchorInverseTransform = simd_inverse(anchorTransform)
+        let nodeLocalPosition4 = anchorInverseTransform * nodeWorldPosition
+        let nodeLocalPosition = simd_make_float3(nodeLocalPosition4.x, nodeLocalPosition4.y, nodeLocalPosition4.z)
+        
+        injectionNodes.append((node, nodeLocalPosition))
+        
+        self.addChild(node)
     }
     
     private func createJoint(radius: Float, color: UIColor = .white) -> Entity {

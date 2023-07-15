@@ -13,6 +13,10 @@ private var bodySkeleton: BodySkeleton?
 private let bodySkeletonAnchor = AnchorEntity()
 
 struct ARViewContainer: UIViewRepresentable {
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
     typealias UIViewType = ARView
     
     func makeUIView(context: Context) -> ARView {
@@ -21,11 +25,46 @@ struct ARViewContainer: UIViewRepresentable {
         arView.setupForBodyTracking()
         arView.scene.addAnchor(bodySkeletonAnchor)
         
+        // handle tap to add injection node on body
+        let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
+        arView.addGestureRecognizer(tapGesture)
+        
         return arView
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
-        
+        // do nothing
+    }
+    
+    class Coordinator: NSObject {
+        var container: ARViewContainer
+            
+        init(_ container: ARViewContainer) {
+            self.container = container
+        }
+            
+        @objc func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
+            let arView = gestureRecognize.view as! ARView
+            let location = gestureRecognize.location(in: arView)
+
+//            let results = arView.raycast(from: location, allowing: .estimatedPlane, alignment: .any)
+//            print("got a tap")
+//            if let firstResult = results.first {
+//                print("processed a hit")
+//                let hitResult = firstResult.worldTransform
+//                if let skeleton = bodySkeleton {
+//                    skeleton.addInjectionNode(at: hitResult, to: arView)
+//                }
+//            }
+            let results = arView.hitTest(location, types: .featurePoint)
+            if let firstResult = results.first {
+                print("processed a hit")
+                let hitResult = firstResult.worldTransform
+                if let skeleton = bodySkeleton {
+                    skeleton.addInjectionNode(at: hitResult, to: arView)
+                }
+            }
+        }
     }
 }
 
