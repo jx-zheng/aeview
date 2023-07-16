@@ -1,5 +1,6 @@
-# aeview
+# AeView
 
-Project made for HackRX 2023
+Project made for HackRx 2023
 
+**Team AeScript**
 Kevin, Jason, Ann & Aryaman
