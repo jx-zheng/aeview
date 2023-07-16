@@ -16,10 +16,15 @@ struct AddDrugView: View {
     @State private var medicationName = ""
     @State private var chemicalName = ""
     @State private var selectedRoute = "Subcutaneous"
+    @State private var dosage = ""
+    @State private var selectedUnit = "mg"
+    @State private var selectedFrequency = "Once a day"
     @State private var notes = ""
     
     let routes = ["Subcutaneous", "Intramuscular", "Transdermal"]
-    
+    let units = ["units", "mg", "ml" ]
+    let frequencies = ["Once a week", "Once a day", "Twice a day", "Every 12 hours", "Every 4 hours", "Every hour"]
+
     var body: some View {
             VStack(alignment: .center)  {
                 Form {
@@ -38,7 +43,34 @@ struct AddDrugView: View {
                         .pickerStyle(MenuPickerStyle())
                         .frame(maxWidth: .infinity)
                         .labelsHidden()
-                        
+                    }
+                    
+                    Section(header: Text("Dosage")) {
+                        VStack {
+                            HStack {
+                                TextField("Dosage", text: $dosage)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .keyboardType(.decimalPad)
+                                    .padding()
+                                
+                                Picker(selection: $selectedUnit, label: Text("")) {
+                                    ForEach(units, id: \.self) { unit in
+                                        Text(unit)
+                                    }
+                                }
+                                .pickerStyle(MenuPickerStyle())
+                                .labelsHidden()
+                            }
+                            Picker(selection: $selectedFrequency, label: Text("")) {
+                                ForEach(frequencies, id: \.self) { frequency in
+                                    Text(frequency)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                            .frame(maxWidth: .infinity)
+                            .labelsHidden()
+                            
+                        }
                     }
                     
                     Section(header: Text("Notes")) {
@@ -72,6 +104,9 @@ struct AddDrugView: View {
         PersistentData.medicationName = medicationName
         PersistentData.chemicalName = chemicalName
         PersistentData.routeOfAdministration = selectedRoute
+        PersistentData.dosage = dosage
+        PersistentData.unit = selectedUnit
+        PersistentData.frequency = selectedFrequency
         PersistentData.therapyNotes = notes
         self.refreshTherapyList.toggle()
     }

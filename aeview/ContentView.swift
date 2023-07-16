@@ -70,6 +70,15 @@ extension VerticalAlignment {
     static let cardHeight = VerticalAlignment(CardHeightAlignment.self)
 }
 
+func generateDosageString() -> String {
+    let dosage = PersistentData.dosage.lowercased()
+    let unit = PersistentData.unit.lowercased()
+    let routeOfAdministration = (PersistentData.routeOfAdministration.lowercased() + "ly")
+    let frequency = PersistentData.frequency.lowercased()
+
+    return "\(dosage) \(unit) \(routeOfAdministration) \(frequency)"
+}
+
 struct ContentView: View {
     @State var isActive: Bool = false
     @State private var refreshFlag = false
@@ -91,7 +100,7 @@ struct ContentView: View {
                     
                     let name = PersistentData.medicationName
                     if !name.isEmpty {
-                        CardView(name: name, dosage: "TODO", chemical_name: PersistentData.chemicalName)
+                        CardView(name: name, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName)
                             .padding(.horizontal, 16)
                             .padding(.vertical, 8)
                     }

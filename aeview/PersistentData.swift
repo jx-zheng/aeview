@@ -30,4 +30,19 @@ class PersistentData {
         set { defaults.set(newValue, forKey: "routeOfAdministration") }
     }
     
+    static var dosage: String {
+        get { defaults.string(forKey: "dosage") ?? "" }
+        set { defaults.set(newValue, forKey: "dosage") }
+    }
+    
+    static var unit: String {
+        get { defaults.string(forKey: "unit") ?? "" }
+        set { defaults.set(newValue, forKey: "unit") }
+    }
+    
+    static var frequency: String {
+        get { defaults.string(forKey: "frequency") ?? "" }
+        set { defaults.set(newValue, forKey: "frequency") }
+    }
+
 }
