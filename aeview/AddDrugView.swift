@@ -117,7 +117,8 @@ struct AddDrugView: View {
                             .cornerRadius(8)
                     }.isDetailLink(false)
                     .padding(20)
-                    .padding(.bottom, 40)
+                    .padding(.bottom, -10)
+                    .padding(.top, -10)
                 
                 
                 Spacer()
