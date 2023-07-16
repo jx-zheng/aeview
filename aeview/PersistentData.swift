@@ -30,6 +30,21 @@ class PersistentData {
         set { defaults.set(newValue, forKey: "routeOfAdministration") }
     }
     
+    static var dosage: String {
+        get { defaults.string(forKey: "dosage") ?? "" }
+        set { defaults.set(newValue, forKey: "dosage") }
+    }
+    
+    static var unit: String {
+        get { defaults.string(forKey: "unit") ?? "" }
+        set { defaults.set(newValue, forKey: "unit") }
+    }
+    
+    static var frequency: String {
+        get { defaults.string(forKey: "frequency") ?? "" }
+        set { defaults.set(newValue, forKey: "frequency") }
+    }
+
     static var storedNodes: [[Float]] { // Should serialize the nodes as [x, y, z] as rel. offset from bodyAnchor
         get { (defaults.array(forKey: "storedNodes") as? [[Float]]) ?? [[0.0]] }
         set { defaults.set(newValue, forKey: "storedNodes") }
