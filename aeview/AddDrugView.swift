@@ -100,6 +100,9 @@ struct AddDrugView: View {
     }
     
     func persistTherapy() {
+        // Set the AR state
+        ARState.isLandmarking = true
+        
         // Store the therapy in UserDefaults
         PersistentData.medicationName = medicationName
         PersistentData.chemicalName = chemicalName

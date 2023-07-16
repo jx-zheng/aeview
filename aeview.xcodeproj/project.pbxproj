@@ -20,6 +20,10 @@
 		D7D8B7442A6335CA00908339 /* CollisionPlaneEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B7432A6335CA00908339 /* CollisionPlaneEntity.swift */; };
 		D7D8B7462A634DA100908339 /* LandmarkingARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B7452A634DA100908339 /* LandmarkingARView.swift */; };
 		D7D8B74C2A63611900908339 /* PersistentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B74B2A63611900908339 /* PersistentData.swift */; };
+		D7D8B74E2A6367DC00908339 /* LandmarkedARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B74D2A6367DC00908339 /* LandmarkedARView.swift */; };
+		D7D8B7502A636BCD00908339 /* LandmarkedBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B74F2A636BCD00908339 /* LandmarkedBody.swift */; };
+		D7D8B7522A63706700908339 /* LandmarkedARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B7512A63706700908339 /* LandmarkedARViewContainer.swift */; };
+		D7D8B7542A6371DE00908339 /* ARState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7D8B7532A6371DE00908339 /* ARState.swift */; };
 		D7E3EDDA2A62FB76002F9BF5 /* ARInjectionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E3EDD92A62FB76002F9BF5 /* ARInjectionNode.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +42,10 @@
 		D7D8B7432A6335CA00908339 /* CollisionPlaneEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollisionPlaneEntity.swift; sourceTree = "<group>"; };
 		D7D8B7452A634DA100908339 /* LandmarkingARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkingARView.swift; sourceTree = "<group>"; };
 		D7D8B74B2A63611900908339 /* PersistentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentData.swift; sourceTree = "<group>"; };
+		D7D8B74D2A6367DC00908339 /* LandmarkedARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkedARView.swift; sourceTree = "<group>"; };
+		D7D8B74F2A636BCD00908339 /* LandmarkedBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkedBody.swift; sourceTree = "<group>"; };
+		D7D8B7512A63706700908339 /* LandmarkedARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkedARViewContainer.swift; sourceTree = "<group>"; };
+		D7D8B7532A6371DE00908339 /* ARState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARState.swift; sourceTree = "<group>"; };
 		D7E3EDD92A62FB76002F9BF5 /* ARInjectionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARInjectionNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +79,8 @@
 		D749C0232A620E0B0089A4BF /* aeview */ = {
 			isa = PBXGroup;
 			children = (
+				D7D8B7512A63706700908339 /* LandmarkedARViewContainer.swift */,
+				D7D8B74F2A636BCD00908339 /* LandmarkedBody.swift */,
 				D7D8B74B2A63611900908339 /* PersistentData.swift */,
 				D749C0362A622A400089A4BF /* SkeletonBone.swift */,
 				D749C0242A620E0B0089A4BF /* aeviewApp.swift */,
@@ -85,6 +95,8 @@
 				D7E3EDD92A62FB76002F9BF5 /* ARInjectionNode.swift */,
 				D7D8B7432A6335CA00908339 /* CollisionPlaneEntity.swift */,
 				D7D8B7452A634DA100908339 /* LandmarkingARView.swift */,
+				D7D8B74D2A6367DC00908339 /* LandmarkedARView.swift */,
+				D7D8B7532A6371DE00908339 /* ARState.swift */,
 			);
 			path = aeview;
 			sourceTree = "<group>";
@@ -169,15 +181,19 @@
 			files = (
 				D749C03B2A622D1A0089A4BF /* BodySkeleton.swift in Sources */,
 				D7D8B7462A634DA100908339 /* LandmarkingARView.swift in Sources */,
+				D7D8B74E2A6367DC00908339 /* LandmarkedARView.swift in Sources */,
 				D749C0272A620E0B0089A4BF /* ContentView.swift in Sources */,
 				C9888A6A2A63311C001EAA33 /* AddDrugView.swift in Sources */,
 				D749C0392A622AAF0089A4BF /* Bones.swift in Sources */,
 				D749C0372A622A400089A4BF /* SkeletonBone.swift in Sources */,
 				D7D8B74C2A63611900908339 /* PersistentData.swift in Sources */,
+				D7D8B7522A63706700908339 /* LandmarkedARViewContainer.swift in Sources */,
 				D7E3EDDA2A62FB76002F9BF5 /* ARInjectionNode.swift in Sources */,
 				D749C0252A620E0B0089A4BF /* aeviewApp.swift in Sources */,
 				D7D8B7442A6335CA00908339 /* CollisionPlaneEntity.swift in Sources */,
+				D7D8B7542A6371DE00908339 /* ARState.swift in Sources */,
 				D749C0332A6226560089A4BF /* ARViewContainer.swift in Sources */,
+				D7D8B7502A636BCD00908339 /* LandmarkedBody.swift in Sources */,
 				D749C0352A622A0B0089A4BF /* SkeletonJoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
