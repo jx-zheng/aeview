@@ -9,11 +9,16 @@ import Foundation
 import SwiftUI
 
 struct LandmarkedARView: View {
+    
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var injectionModalState = InjectionModalGlobalStates.shared
+    
     var body: some View {
         ZStack() {
             LandmarkedARViewContainer().ignoresSafeArea(.all)
-            InjectionNoteView()
+            if injectionModalState.shouldShowInjectionModal {
+                InjectionNoteView()
+            }
             VStack {
                 HStack {
                     Spacer()
@@ -24,7 +29,7 @@ struct LandmarkedARView: View {
                         .padding(.trailing)
                 }
                 Spacer()
-                Button(action: { self.presentationMode.wrappedValue.dismiss() }) { // TODO: action
+                Button(action: { self.presentationMode.wrappedValue.dismiss() }) {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
                         Text("Finish Viewing").bold()
