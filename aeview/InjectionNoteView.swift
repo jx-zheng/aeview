@@ -15,9 +15,10 @@ struct InjectionNoteView: View {
                 .padding(.top, 10)
             
             VStack {
-                Text("Note: " + PersistentData.therapyNotes)
+                Text("Notes: " + PersistentData.therapyNotes)
                     .padding(10)
-                    .font(.caption)
+                    .font(.system(size: 15))
+                    .multilineTextAlignment(.center)
             }
             .background(Color.white)
             .frame(maxWidth: 200)
@@ -25,11 +26,11 @@ struct InjectionNoteView: View {
             
             Text(PersistentData.medicationName)
                 .font(.headline)
-            
+
             Text(generateDosageString())
-                .font(.caption2)
+                .font(.headline)
                 .italic()
-            
+
             
             HStack {
                 NavigationLink(destination: ContentView()){
@@ -38,14 +39,14 @@ struct InjectionNoteView: View {
 
                         Text("Close")
                     }
-                    .padding([.trailing, .leading], 18)
+                    .padding([.trailing, .leading], 35)
                     .padding([.top, .bottom], 15)
-                    .background(Color.white)
-                    .foregroundColor(.black)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
                     .font(.caption)
                     .cornerRadius(8)
                 }
-                .frame(width: 100)
+                .frame(width: 170)
                 
                 Button(action: {
                     // Action to perform when the button is tapped
@@ -56,19 +57,20 @@ struct InjectionNoteView: View {
                         Text("Inject")
                             .bold()
                     }
-                    .padding([.trailing, .leading], 18)
+                    .padding([.trailing, .leading], 35)
                     .padding([.top, .bottom], 15)
 
-                        .background(Color.white)
-                        .foregroundColor(.blue)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
                         .font(.caption)
                         .cornerRadius(8)
                 }
-                .frame(width: 100)
+                .frame(width: 170)
             }
             .padding(.bottom, 10)
         }
-        .background(Color.gray.opacity(0.3))
+        .background(Color.white)
+        .cornerRadius(8)
         
     }
 }
