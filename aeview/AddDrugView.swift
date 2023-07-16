@@ -111,6 +111,8 @@ struct AddDrugView: View {
         PersistentData.frequency = selectedFrequency
         PersistentData.therapyNotes = notes
         //self.refreshTherapyList.toggle()
+        
+        PersistentData.didChangeDate = false
     }
 }
 

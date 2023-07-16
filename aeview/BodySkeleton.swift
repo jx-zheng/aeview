@@ -24,8 +24,7 @@ class BodySkeleton: Entity {
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
             var jointRadius: Float = 0.05
             var jointColor: UIColor = .yellow
-            
-            // green joints actively tracked by ARKit. Yellow joints follow motion of closest green parent
+
             switch jointName {
             case "neck_1_joint", "neck_2_joint", "neck_3_joint", "neck_4_joint", "head_joint",
                 "left_shoulder_1_joint", "right_shoulder_1_joint":

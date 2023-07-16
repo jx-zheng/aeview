@@ -44,6 +44,16 @@ class PersistentData {
         get { defaults.string(forKey: "frequency") ?? "" }
         set { defaults.set(newValue, forKey: "frequency") }
     }
+    
+    static var lastAdministeredDate: Date? {
+        get { (defaults.object(forKey: "lastAdministeredDate") as! Date?) }
+        set { defaults.set(newValue, forKey: "lastAdministeredDate") }
+    }
+    
+    static var didChangeDate: Bool {
+        get { defaults.bool(forKey: "didChangeDate") }
+        set { defaults.set(newValue, forKey: "didChangeDate"); if !newValue { lastAdministeredDate = nil } }
+    }
 
     static var storedNodes: [[Float]] { // Should serialize the nodes as [x, y, z] as rel. offset from bodyAnchor
         get { (defaults.array(forKey: "storedNodes") as? [[Float]]) ?? [[0.0]] }

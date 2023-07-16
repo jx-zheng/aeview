@@ -38,7 +38,7 @@ struct InjectionNoteView: View {
             
             HStack {
                 Button(action: {
-                    var globalModalState = InjectionModalGlobalStates.shared
+                    let globalModalState = InjectionModalGlobalStates.shared
                     globalModalState.selectedNode!.model?.materials = [greenMaterial]
                     globalModalState.shouldShowInjectionModal = false
                 }) {
@@ -55,9 +55,11 @@ struct InjectionNoteView: View {
                 }.frame(width: 170)
                 
                 Button(action: {
-                    var globalModalState = InjectionModalGlobalStates.shared
+                    let globalModalState = InjectionModalGlobalStates.shared
                     globalModalState.selectedNode!.model?.materials = [redMaterial]
                     globalModalState.shouldShowInjectionModal = false
+                    PersistentData.lastAdministeredDate = Date()
+                    PersistentData.didChangeDate = true
                 }) {
                     HStack {
                         Image(systemName: "syringe")
