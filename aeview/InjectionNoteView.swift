@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import RealityKit
 
 struct InjectionNoteView: View {
+    let redMaterial = SimpleMaterial(color: .red, roughness: 0.8, isMetallic: false)
+    let greenMaterial = SimpleMaterial(color: .green, roughness: 0.8, isMetallic: false)
+    
     var body: some View {
         VStack {
             Text("Injection Site")
@@ -33,10 +37,13 @@ struct InjectionNoteView: View {
 
             
             HStack {
-                NavigationLink(destination: ContentView()){
+                Button(action: {
+                    let globalModalState = InjectionModalGlobalStates.shared
+                    globalModalState.selectedNode!.model?.materials = [greenMaterial]
+                    globalModalState.shouldShowInjectionModal = false
+                }) {
                     HStack {
                         Image(systemName: "chevron.backward.circle")
-
                         Text("Close")
                     }
                     .padding([.trailing, .leading], 35)
@@ -45,11 +52,14 @@ struct InjectionNoteView: View {
                     .foregroundColor(.white)
                     .font(.caption)
                     .cornerRadius(8)
-                }
-                .frame(width: 170)
+                }.frame(width: 170)
                 
                 Button(action: {
-                    // Action to perform when the button is tapped
+                    let globalModalState = InjectionModalGlobalStates.shared
+                    globalModalState.selectedNode!.model?.materials = [redMaterial]
+                    globalModalState.shouldShowInjectionModal = false
+                    PersistentData.lastAdministeredDate = Date()
+                    PersistentData.didChangeDate = true
                 }) {
                     HStack {
                         Image(systemName: "syringe")

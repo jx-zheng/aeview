@@ -82,6 +82,7 @@ func generateDosageString() -> String {
 struct ContentView: View {
     @State var isActive: Bool = false
     @AppStorage("medicationName") var medName: String = ""
+    @AppStorage("didChangeDate") var dateChanged: Bool = false
     
     var body: some View {
         NavigationView {
@@ -94,7 +95,9 @@ struct ContentView: View {
                     .padding(.bottom, 30)
                 
                 VStack {
-                    CardView(name: "Lantus Solostar", dosage: "10 units subcutaneously nightly", chemical_name: "Insulin Glargine", last_dose: Date() )
+
+                    if dateChanged {}
+                    CardView(name: "Lantus Solostar", dosage: "10 units subcutaneously nightly", chemical_name: "Insulin Glargine", last_dose: Calendar.current.date(byAdding: .day, value: -2, to: Date()))
                         .padding(.horizontal, 25)
                         .padding(.vertical, 10)
                     
@@ -106,7 +109,8 @@ struct ContentView: View {
                         NavigationLink(destination: LandmarkedARView()
                             .navigationBarHidden(true)
                             .onAppear( perform: { ARState.isLandmarking = false } )) {
-                            CardView(name: medName, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName)
+
+                                CardView(name: medName, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName, last_dose: PersistentData.lastAdministeredDate)
                                     .padding(.horizontal, 25)
                                     .padding(.vertical, 10)
                             }.accentColor(Color.black)

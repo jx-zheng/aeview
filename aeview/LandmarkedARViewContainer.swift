@@ -54,6 +54,9 @@ struct LandmarkedARViewContainer: UIViewRepresentable {
             if entityAtTap is ModelEntity {
                 let modelEntity = entityAtTap as! ModelEntity
                 modelEntity.model?.materials = [yellowMaterial]
+                let injectionModalGlobalStates = InjectionModalGlobalStates.shared
+                injectionModalGlobalStates.selectedNode = modelEntity
+                injectionModalGlobalStates.shouldShowInjectionModal = true
             }
         }
     }
