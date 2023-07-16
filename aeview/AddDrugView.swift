@@ -21,7 +21,7 @@ struct AddDrugView: View {
     @State private var notes = ""
     
     let routes = ["Subcutaneous", "Intramuscular", "Transdermal"]
-    let units = ["units", "mg", "ml" ]
+    let units = ["units", "mg", "mL" ]
     let frequencies = ["Once a week", "Once a day", "Twice a day", "Every 12 hours", "Every 4 hours", "Every hour"]
 
     var body: some View {
