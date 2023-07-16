@@ -13,6 +13,9 @@ class ARInjectionNode {
         let mesh = MeshResource.generateSphere(radius: 0.02)
         let material = SimpleMaterial(color: color, roughness: 0.8, isMetallic: false)
         let entity = ModelEntity(mesh: mesh, materials: [material])
+        
+        let collisionShape = ShapeResource.generateSphere(radius: 0.02)
+        entity.components[CollisionComponent] = CollisionComponent(shapes: [collisionShape])
         return entity
     }
 }

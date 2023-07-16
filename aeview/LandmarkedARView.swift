@@ -13,8 +13,16 @@ struct LandmarkedARView: View {
     var body: some View {
         ZStack() {
             LandmarkedARViewContainer().ignoresSafeArea(.all)
+            InjectionNoteView()
             VStack {
-                InjectionNoteView()
+                HStack {
+                    Spacer()
+                    Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
+                        .resizable()
+                        .frame(width: 80, height: 63)
+                        .foregroundColor(Color.blue)
+                        .padding(.trailing)
+                }
                 Spacer()
                 Button(action: { self.presentationMode.wrappedValue.dismiss() }) { // TODO: action
                     HStack {

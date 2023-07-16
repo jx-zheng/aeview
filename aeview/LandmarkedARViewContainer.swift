@@ -26,6 +26,10 @@ struct LandmarkedARViewContainer: UIViewRepresentable {
         arView.setupForBodyTracking()
         ARState.landmarkedBodyAnchor = bodyAnchor
         arView.scene.addAnchor(bodyAnchor)
+        
+        // handle tap on injection node on body
+        let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
+        arView.addGestureRecognizer(tapGesture)
     
         return arView
     }
@@ -36,9 +40,21 @@ struct LandmarkedARViewContainer: UIViewRepresentable {
     
     class Coordinator: NSObject {
         var container: LandmarkedARViewContainer
+        let yellowMaterial = SimpleMaterial(color: .yellow, roughness: 0.8, isMetallic: false)
             
         init(_ container: LandmarkedARViewContainer) {
             self.container = container
+        }
+        
+        @objc func handleTap(_ gestureRecognize: UITapGestureRecognizer) {
+            let arView = gestureRecognize.view as! ARView
+            let location = gestureRecognize.location(in: arView)
+            let entityAtTap = arView.entity(at: location)
+            
+            if entityAtTap is ModelEntity {
+                let modelEntity = entityAtTap as! ModelEntity
+                modelEntity.model?.materials = [yellowMaterial]
+            }
         }
     }
 }
