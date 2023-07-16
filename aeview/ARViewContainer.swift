@@ -13,7 +13,6 @@ private var bodySkeleton: BodySkeleton?
 private let bodySkeletonAnchor = AnchorEntity()
 
 struct ARViewContainer: UIViewRepresentable {
-    @State private var showFinishLandmarking = false
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -71,11 +70,21 @@ extension ARView: ARSessionDelegate {
     public func session(_ session: ARSession, didUpdate anchors: [ARAnchor]) {
         for anchor in anchors {
             if let bodyAnchor = anchor as? ARBodyAnchor {
-                if let skeleton = bodySkeleton {
-                    skeleton.update(with: bodyAnchor)
+                if ARState.isLandmarking {
+                    if let skeleton = bodySkeleton {
+                        skeleton.update(with: bodyAnchor)
+                    } else {
+                        bodySkeleton = BodySkeleton(for: bodyAnchor)
+                        bodySkeletonAnchor.addChild(bodySkeleton!)
+                    }
                 } else {
-                    bodySkeleton = BodySkeleton(for: bodyAnchor)
-                    bodySkeletonAnchor.addChild(bodySkeleton!)
+                    if let landmarkedBody = ARState.landmarkedBody {
+                        landmarkedBody.update(with: bodyAnchor)
+                    } else {
+                        let lBody = LandmarkedBody(for: bodyAnchor)
+                        ARState.landmarkedBody = lBody
+                        ARState.landmarkedBodyAnchor!.addChild(lBody)
+                    }
                 }
             }
         }

@@ -107,7 +107,7 @@ class BodySkeleton: Entity {
     }
     
     func addInjectionNode(at hitResult: simd_float3, to arView: ARView) {
-        let node = ARInjectionNode.createNode()
+        let node = ARInjectionNode.createNode(color: .yellow)
         // node.position = hitResult
         
         let anchorTransform = bodyAnchor?.transform

@@ -9,9 +9,9 @@ import Foundation
 import RealityKit
 
 class ARInjectionNode {
-    static func createNode() -> Entity {
+    static func createNode(color: SimpleMaterial.Color) -> Entity {
         let mesh = MeshResource.generateSphere(radius: 0.02)
-        let material = SimpleMaterial(color: .yellow, roughness: 0.8, isMetallic: false)
+        let material = SimpleMaterial(color: color, roughness: 0.8, isMetallic: false)
         let entity = ModelEntity(mesh: mesh, materials: [material])
         return entity
     }
