@@ -70,7 +70,19 @@ extension VerticalAlignment {
     static let cardHeight = VerticalAlignment(CardHeightAlignment.self)
 }
 
+func generateDosageString() -> String {
+    let dosage = PersistentData.dosage.lowercased()
+    let unit = PersistentData.unit.lowercased()
+    let routeOfAdministration = (PersistentData.routeOfAdministration.lowercased() + "ly")
+    let frequency = PersistentData.frequency.lowercased()
+
+    return "\(dosage) \(unit) \(routeOfAdministration) \(frequency)"
+}
+
 struct ContentView: View {
+    @State var isActive: Bool = false
+    @AppStorage("medicationName") var medName: String = ""
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -78,8 +90,6 @@ struct ContentView: View {
                     .font(.title3)
                     .bold()
                 VStack {
-                    
-                    
                     CardView(name: "Lantus Solostar", dosage: "10 units subcutaneously nightly", chemical_name: "Insulin Glargine", last_dose: Date() )
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
@@ -87,8 +97,19 @@ struct ContentView: View {
                     CardView(name: "TruRapi", dosage: "3-5 units subcutaneously with meals", chemical_name: "Insulin Aspart" )
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
+
+                    if !medName.isEmpty {
+                        NavigationLink(destination: LandmarkedARView()
+                            .navigationBarHidden(true)
+                            .onAppear( perform: { ARState.isLandmarking = false } )) {
+                            CardView(name: medName, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                            }.accentColor(Color.black)
+                    }
                     
-                    NavigationLink(destination: AddDrugView()) {
+                    NavigationLink(destination: AddDrugView(rootIsActive: self.$isActive),
+                                   isActive: self.$isActive) {
                         HStack {
                             Image(systemName: "plus.circle.fill")
                             
@@ -100,7 +121,7 @@ struct ContentView: View {
                         .background(Color.blue)
                         .cornerRadius(8)
                         .padding()
-                    }
+                    }.isDetailLink(false)
                 }
                 
             }

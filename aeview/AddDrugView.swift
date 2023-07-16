@@ -10,13 +10,20 @@ import Foundation
 import SwiftUI
 
 struct AddDrugView: View {
+    @Binding var rootIsActive: Bool
+    
     @State private var medicationName = ""
     @State private var chemicalName = ""
     @State private var selectedRoute = "Subcutaneous"
+    @State private var dosage = ""
+    @State private var selectedUnit = "mg"
+    @State private var selectedFrequency = "Once a day"
     @State private var notes = ""
     
     let routes = ["Subcutaneous", "Intramuscular", "Transdermal"]
-    
+    let units = ["units", "mg", "ml" ]
+    let frequencies = ["Once a week", "Once a day", "Twice a day", "Every 12 hours", "Every 4 hours", "Every hour"]
+
     var body: some View {
             VStack(alignment: .center)  {
                 Form {
@@ -35,7 +42,34 @@ struct AddDrugView: View {
                         .pickerStyle(MenuPickerStyle())
                         .frame(maxWidth: .infinity)
                         .labelsHidden()
-                        
+                    }
+                    
+                    Section(header: Text("Dosage")) {
+                        VStack {
+                            HStack {
+                                TextField("Dosage", text: $dosage)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .keyboardType(.decimalPad)
+                                    .padding()
+                                
+                                Picker(selection: $selectedUnit, label: Text("")) {
+                                    ForEach(units, id: \.self) { unit in
+                                        Text(unit)
+                                    }
+                                }
+                                .pickerStyle(MenuPickerStyle())
+                                .labelsHidden()
+                            }
+                            Picker(selection: $selectedFrequency, label: Text("")) {
+                                ForEach(frequencies, id: \.self) { frequency in
+                                    Text(frequency)
+                                }
+                            }
+                            .pickerStyle(MenuPickerStyle())
+                            .frame(maxWidth: .infinity)
+                            .labelsHidden()
+                            
+                        }
                     }
                     
                     Section(header: Text("Notes")) {
@@ -43,10 +77,9 @@ struct AddDrugView: View {
                             .frame(height: 100)
                     }
                     
-                    Button(action: {
-                        // Submit form action
-                        submitForm()
-                    }) {
+                    NavigationLink(destination: LandmarkingARView(popToRootView: self.$rootIsActive)
+                        .onAppear(perform: { self.persistTherapy() })
+                        .navigationBarHidden(true)) {
                         Text("Start Landmarking")
                             .font(.title3)
                             .bold()
@@ -54,7 +87,7 @@ struct AddDrugView: View {
                             .padding()
                             .foregroundColor(.blue)
                             .cornerRadius(8)
-                    }
+                        }.isDetailLink(false)
                 }
                 .navigationBarTitle("Add Drug Form")
                 .padding()
@@ -65,18 +98,24 @@ struct AddDrugView: View {
 
     }
     
-    func submitForm() {
-        // Perform form submission or validation logic
-        print("Form submitted!")
-        print("Medication Name:", medicationName)
-        print("Chemical Name:", chemicalName)
-        print("Route of Administration:", selectedRoute)
-        print("Notes:", notes)
+    func persistTherapy() {
+        // Set the AR state
+        ARState.isLandmarking = true
+        
+        // Store the therapy in UserDefaults
+        PersistentData.medicationName = medicationName
+        PersistentData.chemicalName = chemicalName
+        PersistentData.routeOfAdministration = selectedRoute
+        PersistentData.dosage = dosage
+        PersistentData.unit = selectedUnit
+        PersistentData.frequency = selectedFrequency
+        PersistentData.therapyNotes = notes
+        //self.refreshTherapyList.toggle()
     }
 }
 
-struct AddDrugView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddDrugView()
-    }
-}
+//struct AddDrugView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // AddDrugView()
+//    }
+//}
