@@ -23,7 +23,7 @@ class BodySkeleton: Entity {
         
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
             var jointRadius: Float = 0.05
-            var jointColor: UIColor = .green
+            var jointColor: UIColor = .yellow
             
             // green joints actively tracked by ARKit. Yellow joints follow motion of closest green parent
             switch jointName {
@@ -34,18 +34,14 @@ class BodySkeleton: Entity {
                 "left_eyeball_joint", "nose_joint", "right_eye_joint", "right_eyeLowerLid_joint",
                 "right_eyeUpperLid_joint", "right_eyeball_joint":
                 jointRadius *= 0.2
-                jointColor = .yellow
             case _ where jointName.hasPrefix("spine_"):
                 jointRadius *= 0.75
             case "left_hand_joint", "right_hand_joint":
                 jointRadius *= 1
-                jointColor = .green
             case _ where jointName.hasPrefix("left_hand") || jointName.hasPrefix("right_hand"):
-                jointRadius *= 0.25
-                jointColor = .yellow
+                jointRadius = 0
             case _ where jointName.hasPrefix("left_toes") || jointName.hasPrefix("right_toes"):
-                jointRadius *= 0.5
-                jointColor = .yellow
+                jointRadius = 0
             default:
                 jointRadius = 0.05
                 jointColor = .green
@@ -110,7 +106,7 @@ class BodySkeleton: Entity {
         }
     }
     
-    func addInjectionNode(at hitResult: simd_float3, to arView: ARView) { // TODO: is arView needed here?
+    func addInjectionNode(at hitResult: simd_float3, to arView: ARView) {
         let node = ARInjectionNode.createNode()
         // node.position = hitResult
         
@@ -118,8 +114,19 @@ class BodySkeleton: Entity {
         let anchorPosition = SIMD3<Float>(anchorTransform!.columns.3.x, anchorTransform!.columns.3.y, anchorTransform!.columns.3.z)
         let nodeLocalPosition = hitResult - anchorPosition
         injectionNodes.append((node, nodeLocalPosition))
+        persistInjectionNodes()
         
         self.addChild(node)
+    }
+    
+    private func persistInjectionNodes() {
+        var persistableNodes: [[Float]] = []
+        
+        for injectionNode in injectionNodes {
+            let nodeRelPosition = injectionNode.1;
+            persistableNodes.append([nodeRelPosition.x, nodeRelPosition.y, nodeRelPosition.z])
+        }
+        PersistentData.storedNodes = persistableNodes
     }
     
     private func createJoint(radius: Float, color: UIColor = .white) -> Entity {

@@ -16,7 +16,7 @@ struct LandmarkingARView: View {
             ARViewContainer().ignoresSafeArea(.all)
             VStack {
                 Spacer()
-                Button(action: { self.popToRootView = false }) {
+                Button(action: { self.popToRootView = false; print(PersistentData.storedNodes) }) {
                     HStack {
                         Image(systemName: "checkmark.circle.fill")
                         Text("Finish Landmarking").bold()
