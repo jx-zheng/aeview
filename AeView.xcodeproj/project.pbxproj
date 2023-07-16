@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C906F3622A63BE8500DC42A2 /* LogoNoText.png in Resources */ = {isa = PBXBuildFile; fileRef = C906F3612A63BE8500DC42A2 /* LogoNoText.png */; };
 		C9888A6A2A63311C001EAA33 /* AddDrugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9888A692A63311C001EAA33 /* AddDrugView.swift */; };
+		C9DC80B92A63A42B00D47F78 /* InjectionNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DC80B82A63A42A00D47F78 /* InjectionNoteView.swift */; };
+		C9DC80BB2A63A51A00D47F78 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DC80BA2A63A51A00D47F78 /* LoginView.swift */; };
+		C9DC80BF2A63A6FE00D47F78 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C9DC80BE2A63A6FE00D47F78 /* Logo.png */; };
 		D749C0252A620E0B0089A4BF /* aeviewApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0242A620E0B0089A4BF /* aeviewApp.swift */; };
 		D749C0272A620E0B0089A4BF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D749C0262A620E0B0089A4BF /* ContentView.swift */; };
 		D749C0292A620E0D0089A4BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D749C0282A620E0D0089A4BF /* Assets.xcassets */; };
@@ -28,7 +32,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C906F3612A63BE8500DC42A2 /* LogoNoText.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LogoNoText.png; sourceTree = "<group>"; };
 		C9888A692A63311C001EAA33 /* AddDrugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDrugView.swift; sourceTree = "<group>"; };
+		C9DC80B82A63A42A00D47F78 /* InjectionNoteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InjectionNoteView.swift; sourceTree = "<group>"; };
+		C9DC80BA2A63A51A00D47F78 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C9DC80BE2A63A6FE00D47F78 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
 		D749C0212A620E0B0089A4BF /* AeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D749C0242A620E0B0089A4BF /* aeviewApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aeviewApp.swift; sourceTree = "<group>"; };
 		D749C0262A620E0B0089A4BF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +105,10 @@
 				D7D8B7452A634DA100908339 /* LandmarkingARView.swift */,
 				D7D8B74D2A6367DC00908339 /* LandmarkedARView.swift */,
 				D7D8B7532A6371DE00908339 /* ARState.swift */,
+				C9DC80B82A63A42A00D47F78 /* InjectionNoteView.swift */,
+				C9DC80BA2A63A51A00D47F78 /* LoginView.swift */,
+				C9DC80BE2A63A6FE00D47F78 /* Logo.png */,
+				C906F3612A63BE8500DC42A2 /* LogoNoText.png */,
 			);
 			path = aeview;
 			sourceTree = "<group>";
@@ -167,6 +179,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C906F3622A63BE8500DC42A2 /* LogoNoText.png in Resources */,
+				C9DC80BF2A63A6FE00D47F78 /* Logo.png in Resources */,
 				D749C02C2A620E0D0089A4BF /* Preview Assets.xcassets in Resources */,
 				D749C0292A620E0D0089A4BF /* Assets.xcassets in Resources */,
 			);
@@ -187,9 +201,11 @@
 				D749C0392A622AAF0089A4BF /* Bones.swift in Sources */,
 				D749C0372A622A400089A4BF /* SkeletonBone.swift in Sources */,
 				D7D8B74C2A63611900908339 /* PersistentData.swift in Sources */,
+				C9DC80B92A63A42B00D47F78 /* InjectionNoteView.swift in Sources */,
 				D7D8B7522A63706700908339 /* LandmarkedARViewContainer.swift in Sources */,
 				D7E3EDDA2A62FB76002F9BF5 /* ARInjectionNode.swift in Sources */,
 				D749C0252A620E0B0089A4BF /* aeviewApp.swift in Sources */,
+				C9DC80BB2A63A51A00D47F78 /* LoginView.swift in Sources */,
 				D7D8B7442A6335CA00908339 /* CollisionPlaneEntity.swift in Sources */,
 				D7D8B7542A6371DE00908339 /* ARState.swift in Sources */,
 				D749C0332A6226560089A4BF /* ARViewContainer.swift in Sources */,
@@ -318,18 +334,19 @@
 		D749C0302A620E0D0089A4BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"aeview/Preview Content\"";
-				DEVELOPMENT_TEAM = LKLHZWRD5Y;
+				DEVELOPMENT_TEAM = 9RZA7C3D82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "AeView needs access to the camera in order to access augmented reality features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LogoNoText;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -337,7 +354,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jxzheng.aeview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaman.aeview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -348,18 +365,19 @@
 		D749C0312A620E0D0089A4BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"aeview/Preview Content\"";
-				DEVELOPMENT_TEAM = LKLHZWRD5Y;
+				DEVELOPMENT_TEAM = 9RZA7C3D82;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "AeView needs access to the camera in order to access augmented reality features";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LogoNoText;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -367,7 +385,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jxzheng.aeview;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aryaman.aeview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

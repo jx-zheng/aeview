@@ -27,13 +27,25 @@ struct AddDrugView: View {
     var body: some View {
             VStack(alignment: .center)  {
                 Form {
-                    Section(header: Text("Medication Information")) {
+                    Section(header:
+                                Text("Medication Information")
+                                    .bold()
+                                    .foregroundColor(.black.opacity(0.7))
+                                    .frame(maxWidth: .infinity, alignment: .center)
+
+                    ) {
                         TextField("Medication Name", text: $medicationName)
                         
                         TextField("Chemical Name", text: $chemicalName)
                     }
                     
-                    Section(header: Text("Routes of Administration")) {
+                    
+                    Section(header:
+                                Text("Routes of Administration")
+                                    .bold()
+                                    .foregroundColor(.black.opacity(0.7))
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                    ) {
                         Picker(selection: $selectedRoute, label: Text("")) {
                             ForEach(routes, id: \.self) { route in
                                 Text(route)
@@ -44,13 +56,16 @@ struct AddDrugView: View {
                         .labelsHidden()
                     }
                     
-                    Section(header: Text("Dosage")) {
+                    Section(header: Text("Dosage")
+                                        .bold()
+                                        .foregroundColor(.black.opacity(0.7))
+                                        .frame(maxWidth: .infinity, alignment: .center)) {
                         VStack {
                             HStack {
                                 TextField("Dosage", text: $dosage)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .keyboardType(.decimalPad)
-                                    .padding()
+
                                 
                                 Picker(selection: $selectedUnit, label: Text("")) {
                                     ForEach(units, id: \.self) { unit in
@@ -72,26 +87,40 @@ struct AddDrugView: View {
                         }
                     }
                     
-                    Section(header: Text("Notes")) {
+                    Section(header: Text("Notes")
+                                        .bold()
+                                        .foregroundColor(.black.opacity(0.7))
+                                        .frame(maxWidth: .infinity, alignment: .center))
+                     {
                         TextEditor(text: $notes)
                             .frame(height: 100)
                     }
                     
-                    NavigationLink(destination: LandmarkingARView(popToRootView: self.$rootIsActive)
-                        .onAppear(perform: { self.persistTherapy() })
-                        .navigationBarHidden(true)) {
-                        Text("Start Landmarking")
+                }
+                .navigationBarTitle("Add Drug Form")
+                .scrollContentBackground(.hidden)
+                
+                NavigationLink(destination: LandmarkingARView(popToRootView: self.$rootIsActive)
+                    .onAppear(perform: { self.persistTherapy() })
+                    .navigationBarHidden(true)) {
+                        
+                        HStack{
+                            Image(systemName: "camera")
+                            Text("Start Landmarking")
+                        }
                             .font(.title3)
                             .bold()
                             .frame(maxWidth: .infinity, alignment: .center)
                             .padding()
-                            .foregroundColor(.blue)
+                            .foregroundColor(.white)
+                            .background(Color(UIColor(red: 0.3, green: 0.69, blue: 0.31, alpha: 1)))
                             .cornerRadius(8)
-                        }.isDetailLink(false)
-                }
-                .navigationBarTitle("Add Drug Form")
-                .padding()
-                .scrollContentBackground(.hidden)
+                    }.isDetailLink(false)
+                    .padding(20)
+                    .padding(.bottom, 40)
+                
+                
+                Spacer()
             }
             .background(Color.gray.opacity(0.2))
 
@@ -114,8 +143,10 @@ struct AddDrugView: View {
     }
 }
 
-//struct AddDrugView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        // AddDrugView()
-//    }
-//}
+struct AddDrugView_Previews: PreviewProvider {
+    @State static var rootIsActive = false
+    
+    static var previews: some View {
+        AddDrugView(rootIsActive: $rootIsActive)
+    }
+}
