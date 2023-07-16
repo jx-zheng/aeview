@@ -11,7 +11,6 @@ import SwiftUI
 
 struct AddDrugView: View {
     @Binding var rootIsActive: Bool
-    @Binding var refreshTherapyList: Bool
     
     @State private var medicationName = ""
     @State private var chemicalName = ""
@@ -111,7 +110,7 @@ struct AddDrugView: View {
         PersistentData.unit = selectedUnit
         PersistentData.frequency = selectedFrequency
         PersistentData.therapyNotes = notes
-        self.refreshTherapyList.toggle()
+        //self.refreshTherapyList.toggle()
     }
 }
 

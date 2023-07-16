@@ -40,10 +40,16 @@ class LandmarkedBody: Entity {
         let retrievedNodes = PersistentData.storedNodes
         for node in retrievedNodes {
             let newNode = ARInjectionNode.createNode(color: .green)
-            self.injectionNodes.append((
-                                        newNode,
-                                        simd_make_float3(node[0], node[1], node[2])
-                                       ))
+            self.injectionNodes.append(
+                (
+                    newNode,
+                    simd_make_float3(
+                        node[0],
+                        node[1],
+                        node[2]
+                    )
+                )
+            )
             self.addChild(newNode)
         }
     }
