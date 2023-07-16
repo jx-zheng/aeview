@@ -97,8 +97,7 @@ struct ContentView: View {
                     CardView(name: "TruRapi", dosage: "3-5 units subcutaneously with meals", chemical_name: "Insulin Aspart" )
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                    
-                    //let name = PersistentData.medicationName
+
                     if !medName.isEmpty {
                         NavigationLink(destination: LandmarkedARView()
                             .navigationBarHidden(true)
