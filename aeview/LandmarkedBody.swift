@@ -32,6 +32,7 @@ class LandmarkedBody: Entity {
             let nodeRelativePosition = injectionNode.1;
             let node = injectionNode.0;
             node.position = nodeRelativePosition + rootPosition
+            // print("placed node at \(node.position)")
         }
     }
     
@@ -43,6 +44,7 @@ class LandmarkedBody: Entity {
                                         newNode,
                                         simd_make_float3(node[0], node[1], node[2])
                                        ))
+            self.addChild(newNode)
         }
     }
 }

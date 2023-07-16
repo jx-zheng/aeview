@@ -100,9 +100,13 @@ struct ContentView: View {
                     
                     let name = PersistentData.medicationName
                     if !name.isEmpty {
-                        CardView(name: name, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName)
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
+                        NavigationLink(destination: LandmarkedARView()
+                            .navigationBarHidden(true)
+                            .onAppear( perform: { ARState.isLandmarking = false } )) {
+                            CardView(name: name, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName)
+                                .padding(.horizontal, 16)
+                                .padding(.vertical, 8)
+                        }
                     }
                     
                     NavigationLink(destination: AddDrugView(rootIsActive: self.$isActive, refreshTherapyList: self.$refreshFlag),

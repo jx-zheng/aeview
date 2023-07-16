@@ -11,7 +11,7 @@ import SwiftUI
 struct LandmarkedARView: View {
     var body: some View {
         ZStack() {
-            ARViewContainer().ignoresSafeArea(.all)
+            LandmarkedARViewContainer().ignoresSafeArea(.all)
             VStack {
                 Spacer()
                 Button(action: { }) { // TODO: action
