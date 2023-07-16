@@ -30,6 +30,7 @@ struct ARViewContainer: UIViewRepresentable {
         let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleTap))
         arView.addGestureRecognizer(tapGesture)
         
+        SkeletonResetSingleton.landmarkingArView = arView
         return arView
     }
     
@@ -71,11 +72,16 @@ extension ARView: ARSessionDelegate {
         for anchor in anchors {
             if let bodyAnchor = anchor as? ARBodyAnchor {
                 if ARState.isLandmarking {
-                    if let skeleton = bodySkeleton {
-                        skeleton.update(with: bodyAnchor)
-                    } else {
+                    if bodySkeleton == nil {
                         bodySkeleton = BodySkeleton(for: bodyAnchor)
                         bodySkeletonAnchor.addChild(bodySkeleton!)
+                    } else if SkeletonResetSingleton.shouldRebuildSkeleton == true {
+                        bodySkeleton?.removeFromParent()
+                        session.remove(anchor: bodyAnchor)
+                        bodySkeleton = nil
+                        SkeletonResetSingleton.shouldRebuildSkeleton = false
+                    } else {
+                        bodySkeleton!.update(with: bodyAnchor)
                     }
                 } else {
                     if let landmarkedBody = ARState.landmarkedBody {

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ARKit
 
 struct LandmarkingARView: View {
     @Binding var popToRootView : Bool
@@ -15,6 +16,20 @@ struct LandmarkingARView: View {
         ZStack() {
             ARViewContainer().ignoresSafeArea(.all)
             VStack {
+                HStack {
+                    Spacer()
+                    Image(systemName: "arrow.triangle.2.circlepath.camera.fill")
+                        .resizable()
+                        .frame(width: 80, height: 63)
+                        .foregroundColor(Color.blue)
+                        .padding(.trailing)
+                        .onTapGesture {
+                            let configuration = ARBodyTrackingConfiguration()
+                            SkeletonResetSingleton.landmarkingArView?.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
+                            SkeletonResetSingleton.shouldRebuildSkeleton = true
+                            SkeletonResetSingleton.shouldRebuildCollisionPlane = true
+                        }
+                }
                 Spacer()
                 Button(action: { self.popToRootView = false; print(PersistentData.storedNodes) }) {
                     HStack {

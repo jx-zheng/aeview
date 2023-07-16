@@ -12,9 +12,10 @@ class CollisionPlaneEntity {
     private init () {}
     
     static func getCollisionPlane() -> Entity {
-        if let plane = CollisionPlane {
+        if let plane = CollisionPlane, !SkeletonResetSingleton.shouldRebuildCollisionPlane {
             return plane
         } else {
+            SkeletonResetSingleton.shouldRebuildCollisionPlane = false
             let mesh = MeshResource.generatePlane(width: 0.4, depth: 0.7)
             let planeEntity = ModelEntity(mesh: mesh, materials: [UnlitMaterial(color: .clear)])
             let boxShape = ShapeResource.generateBox(size: [0.4, 0.001, 0.7]) // Thin box approximating a plane

@@ -21,6 +21,8 @@ class BodySkeleton: Entity {
         
         self.bodyAnchor = bodyAnchor
         
+        print(bodyAnchor.transform)
+        
         for jointName in ARSkeletonDefinition.defaultBody3D.jointNames {
             var jointRadius: Float = 0.05
             var jointColor: UIColor = .yellow
