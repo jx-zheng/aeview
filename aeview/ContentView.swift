@@ -81,7 +81,7 @@ func generateDosageString() -> String {
 
 struct ContentView: View {
     @State var isActive: Bool = false
-    @State private var refreshFlag = false
+    @AppStorage("medicationName") var medName: String = ""
     
     var body: some View {
         NavigationView {
@@ -97,18 +97,18 @@ struct ContentView: View {
                     CardView(name: "TruRapi", dosage: "3-5 units subcutaneously with meals", chemical_name: "Insulin Aspart" )
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
-                    
-                    let name = PersistentData.medicationName
-                    if !name.isEmpty {
-                        NavigationLink(destination: InjectionNoteView()) {
-                            CardView(name: name, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName)
+
+                    if !medName.isEmpty {
+                        NavigationLink(destination: LandmarkedARView()
+                            .navigationBarHidden(true)
+                            .onAppear( perform: { ARState.isLandmarking = false } )) {
+                            CardView(name: medName, dosage: generateDosageString(), chemical_name: PersistentData.chemicalName)
                                 .padding(.horizontal, 16)
                                 .padding(.vertical, 8)
-                        }
-                        .foregroundColor(Color.black)
+                            }.accentColor(Color.black)
                     }
                     
-                    NavigationLink(destination: AddDrugView(rootIsActive: self.$isActive, refreshTherapyList: self.$refreshFlag),
+                    NavigationLink(destination: AddDrugView(rootIsActive: self.$isActive),
                                    isActive: self.$isActive) {
                         HStack {
                             Image(systemName: "plus.circle.fill")

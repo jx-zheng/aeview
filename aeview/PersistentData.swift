@@ -45,4 +45,8 @@ class PersistentData {
         set { defaults.set(newValue, forKey: "frequency") }
     }
 
+    static var storedNodes: [[Float]] { // Should serialize the nodes as [x, y, z] as rel. offset from bodyAnchor
+        get { (defaults.array(forKey: "storedNodes") as? [[Float]]) ?? [[0.0]] }
+        set { defaults.set(newValue, forKey: "storedNodes") }
+    }
 }
