@@ -1,7 +1,8 @@
 # aeview
 
-<img width="800" alt="AeView screenshots" src="https://github.com/jx-zheng/aeview/assets/43159579/ea4aae69-b56a-44cc-b934-9f1a8dc40cce">
+![AeView app icon](https://github.com/jx-zheng/aeview/assets/43159579/e4a44872-e004-4256-a9c2-8883c309122c)
 
+## Description
 HackRx 2023 Project - Team AeScript
 
 This project was created for, and submitted to, HackRx 2023. This submission won 1st place. 
@@ -11,3 +12,6 @@ This project was created for, and submitted to, HackRx 2023. This submission won
 This repository contains the iOS mobile app built with SwiftUI, ARKit, and RealityKit.
 
 Presentation slide deck: https://docs.google.com/presentation/d/1O-jqtD1lxglV-U9lyszVAnM_2clWcFq3YbeJVBpdbFo/edit?usp=sharing
+
+## Screenshots
+<img width="800" alt="AeView screenshots" src="https://github.com/jx-zheng/aeview/assets/43159579/ea4aae69-b56a-44cc-b934-9f1a8dc40cce">
